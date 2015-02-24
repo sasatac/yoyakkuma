@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
-  root 'tests#index'
+  get 'welcome/index'
+
+  resources :reserves
+
+  resources :stores
+
+  resources :customers
+
+  root 'welcome#index'
 
   resources :tests
 
