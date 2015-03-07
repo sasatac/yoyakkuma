@@ -15,5 +15,10 @@
   <%= @store.address %>
 </p>
 
+<p>
+  <strong>Photo:</strong>
+  <%= image_tag @store.photo.url(:medium) %>
+</p>
+
 <%= link_to 'Edit', edit_store_path(@store) %> |
 <%= link_to 'Back', stores_path %>
