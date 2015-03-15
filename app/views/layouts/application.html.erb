@@ -11,27 +11,34 @@
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
   <header class="navbar navbar-fixed-top navbar">
-  <div id = 'user_nav'>
-    <% if user_signed_in? %>
-      Logged in as <strong><%= current_user.email %></strong>.
-      <%= link_to "プロフィール変更", edit_user_registration_path %> |
-      <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-    <% else %>
-      <%= link_to "サインアップ", new_user_registration_path %> or
-      <%= link_to "サインイン", new_user_session_path %>
-    <% end %>
-  </div>
     <div class="navbar-inner">
       <div class="container">
-        <%= link_to "yoyakkuma", '#', id: "logo" %>
+        <%= link_to "yoyakkuma", root_path, id: "logo" %>
         <nav>
           <ul class="nav pull-right">
-            <li><%= link_to "店舗", '#' %></li>
-            <li><%= link_to "ユーザー", '#' %></li>
-            <li><%= link_to "問い合わせ", '#' %></li>
+<div class="dropdown">
+  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+    <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+    <li role="presentation"><%= link_to "店舗", stores_path %></li>
+    <li role="presentation"><%= link_to "ユーザー", customers_path %></li>
+    <li role="presentation"><%= link_to "問い合わせ", contact_path %></li>
+  </ul>
+</div>
           </ul>
         </nav>
       </div>
+    </div>
+    <div id = 'user_nav'>
+    <% if user_signed_in? %>
+      Logged in as <strong><%= current_user.email %></strong>.
+      <%= link_to "プロフィール変更", edit_user_registration_path, :class=>'btn btn-default'  %> |
+      <%= link_to "ログアウト", destroy_user_session_path, :class=>'btn btn-default', method: :delete %>
+    <% else %>
+      <%= link_to "サインアップ", new_user_registration_path,:class=>'btn btn-default' %> or
+      <%= link_to "サインイン", new_user_session_path,:class=>'btn btn-default' %>
+    <% end %>
     </div>
   </header>
 <div class="container">
@@ -39,4 +46,10 @@
 </div>
 
 </body>
+<hr>
+<footer>
+<div class="center">
+<p>Copyright 2015 Takazumi Sasaki</p>
+</div>
+</footer>
 </html>

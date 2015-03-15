@@ -1,32 +1,73 @@
-<%= form_for(@store) do |f| %>
-  <% if @store.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@store.errors.count, "error") %> prohibited this store from being saved:</h2>
+<%= form_for @store, :html => { :class => "form-horizontal store" } do |f| %>
 
-      <ul>
-      <% @store.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+    <% if @store.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@store.errors.count, "error") %> prohibited this store from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @store.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+  <div class="control-group">
+    <%= f.label :name, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :name, :class => 'form-control' %>
+    </div>
+    <%= error_span(@store[:name]) %>
   </div>
-  <div class="field">
-    <%= f.label :tel %><br>
-    <%= f.text_field :tel %>
+  <div class="control-group">
+    <%= f.label :tel, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :tel, :class => 'form-control' %>
+    </div>
+    <%= error_span(@store[:tel]) %>
   </div>
-  <div class="field">
-    <%= f.label :address %><br>
-    <%= f.text_field :address %>
+  <div class="control-group">
+    <%= f.label :address, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :address, :class => 'form-control' %>
+    </div>
+    <%= error_span(@store[:address]) %>
   </div>
-  <div class="field">
-    <%= f.file_field :photo %>
+  <div class="control-group">
+    <%= f.label :photo_file_name, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :photo_file_name, :class => 'form-control' %>
+    </div>
+    <%= error_span(@store[:photo_file_name]) %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="control-group">
+    <%= f.label :photo_content_type, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :photo_content_type, :class => 'form-control' %>
+    </div>
+    <%= error_span(@store[:photo_content_type]) %>
   </div>
+  <div class="control-group">
+    <%= f.label :photo_file_size, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :photo_file_size, :class => 'form-control' %>
+    </div>
+    <%= error_span(@store[:photo_file_size]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :photo_updated_at, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :photo_updated_at, :class => 'form-control' %>
+    </div>
+    <%= error_span(@store[:photo_updated_at]) %>
+  </div>
+
+
+  <%= f.submit nil, :class => 'btn btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+            stores_path, :class => 'btn btn-default' %>
+
 <% end %>
