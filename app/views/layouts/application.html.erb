@@ -18,12 +18,18 @@
           <ul class="nav pull-right">
 <div class="dropdown">
   <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-    <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
+    <span class="glyphicon glyphicons-star"></span>
   </button>
   <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
     <li role="presentation"><%= link_to "店舗", stores_path %></li>
-    <li role="presentation"><%= link_to "ユーザー", customers_path %></li>
+    <% if user_signed_in? %>
+      <li role="presentation"><%= link_to "ユーザー", customer_path(current_user.id) %></li>
+    <% end %>
     <li role="presentation"><%= link_to "問い合わせ", contact_path %></li>
+    <% if user_signed_in? %>
+      <li role="presentation"><%= link_to "ログアウト", destroy_user_session_path,
+	method: :delete %></li>
+    <% end %>
   </ul>
 </div>
           </ul>
@@ -32,9 +38,6 @@
     </div>
     <div id = 'user_nav'>
     <% if user_signed_in? %>
-      Logged in as <strong><%= current_user.email %></strong>.
-      <%= link_to "プロフィール変更", edit_user_registration_path, :class=>'btn btn-default'  %> |
-      <%= link_to "ログアウト", destroy_user_session_path, :class=>'btn btn-default', method: :delete %>
     <% else %>
       <%= link_to "サインアップ", new_user_registration_path,:class=>'btn btn-default' %> or
       <%= link_to "サインイン", new_user_session_path,:class=>'btn btn-default' %>
