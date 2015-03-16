@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get 'welcome/contact', :as => 'contact'
 
   resources :reserves
-#  get '/reserve/:id/reserve_store'
+  get 'reserve/reserve_store/:id' => 'reserves#reserve_store', :as => 'reserve_store'
 
   resources :stores
 

@@ -13,7 +13,7 @@ class ReservesController < ApplicationController
   end
 
   def reserve_store
-    @reserf = Reserve.where(:customer_id => current_user_id,:store_id => params[:id])
+    @reserf = Reserve.where(:customer_id => current_user.id,:store_id => params[:id])
   end
 
   # GET /reserves/new
