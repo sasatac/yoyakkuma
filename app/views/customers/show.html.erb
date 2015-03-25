@@ -21,3 +21,15 @@
               :method => 'delete',
               :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
               :class => 'btn btn-danger' %>
+
+<div>
+  <h2>予約リスト</h2>
+  <% @reserves.each do |reserve| %>
+    <dl>
+      <dt><strong>店舗名:</strong></dt>
+      <dd><%= reserve.store.name %></dd>
+      <dt><strong>開始時刻:</strong></dt>
+      <dd><%= reserve.start_datetime %></dd>
+    </dl>
+  <% end %>
+</div>

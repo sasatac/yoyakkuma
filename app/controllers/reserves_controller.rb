@@ -13,7 +13,11 @@ class ReservesController < ApplicationController
   end
 
   def reserve_store
-    @reserf = Reserve.where(:customer_id => current_user.id,:store_id => params[:id])
+#    @reserf = Reserve.where(:customer_id => current_user.id,:store_id => params[:id])
+    @reserf = Reserve.find_by(:customer_id => current_user.id,:store_id => params[:id])
+    if @reserf.blank?
+      @reserf = Reserve.new
+    end
   end
 
   # GET /reserves/new
@@ -73,6 +77,6 @@ class ReservesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def reserf_params
-      params.require(:reserf).permit(:customer_id, :store_id, :start_datetime, :end_datetime, :memo)
+      params.require(:reserve).permit(:customer_id, :store_id, :start_datetime, :end_datetime, :memo)
     end
 end
